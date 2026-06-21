@@ -1,0 +1,1478 @@
+Compiled from "ConfigurationValueHandlers.java"
+public abstract class fr.zcraft.quartzlib.components.configuration.ConfigurationValueHandlers {
+  private static final java.util.Map<java.lang.Class, fr.zcraft.quartzlib.components.configuration.ValueHandler> valueHandlers;
+
+  private fr.zcraft.quartzlib.components.configuration.ConfigurationValueHandlers();
+    Code:
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+
+  public static void registerHandlers(java.lang.Class<?>);
+    Code:
+         0: aload_0
+         1: invokevirtual #2                  // Method java/lang/Class.getMethods:()[Ljava/lang/reflect/Method;
+         4: astore_1
+         5: aload_1
+         6: arraylength
+         7: istore_2
+         8: iconst_0
+         9: istore_3
+        10: iload_3
+        11: iload_2
+        12: if_icmpge     128
+        15: aload_1
+        16: iload_3
+        17: aaload
+        18: astore        4
+        20: aload         4
+        22: invokevirtual #3                  // Method java/lang/reflect/Method.getModifiers:()I
+        25: invokestatic  #4                  // Method java/lang/reflect/Modifier.isStatic:(I)Z
+        28: ifne          34
+        31: goto          122
+        34: aload         4
+        36: ldc           #5                  // class fr/zcraft/quartzlib/components/configuration/ConfigurationValueHandler
+        38: invokevirtual #6                  // Method java/lang/reflect/Method.getAnnotation:(Ljava/lang/Class;)Ljava/lang/annotation/Annotation;
+        41: checkcast     #5                  // class fr/zcraft/quartzlib/components/configuration/ConfigurationValueHandler
+        44: astore        5
+        46: aload         5
+        48: ifnonnull     54
+        51: goto          122
+        54: aload         5
+        56: invokeinterface #7,  1            // InterfaceMethod fr/zcraft/quartzlib/components/configuration/ConfigurationValueHandler.value:()[Ljava/lang/Class;
+        61: arraylength
+        62: ifne          78
+        65: aload         4
+        67: invokevirtual #8                  // Method java/lang/reflect/Method.getReturnType:()Ljava/lang/Class;
+        70: aload         4
+        72: invokestatic  #9                  // Method addHandler:(Ljava/lang/Class;Ljava/lang/reflect/Method;)V
+        75: goto          122
+        78: aload         5
+        80: invokeinterface #7,  1            // InterfaceMethod fr/zcraft/quartzlib/components/configuration/ConfigurationValueHandler.value:()[Ljava/lang/Class;
+        85: astore        6
+        87: aload         6
+        89: arraylength
+        90: istore        7
+        92: iconst_0
+        93: istore        8
+        95: iload         8
+        97: iload         7
+        99: if_icmpge     122
+       102: aload         6
+       104: iload         8
+       106: aaload
+       107: astore        9
+       109: aload         9
+       111: aload         4
+       113: invokestatic  #9                  // Method addHandler:(Ljava/lang/Class;Ljava/lang/reflect/Method;)V
+       116: iinc          8, 1
+       119: goto          95
+       122: iinc          3, 1
+       125: goto          10
+       128: return
+
+  private static void addHandler(java.lang.Class<?>, java.lang.reflect.Method);
+    Code:
+         0: getstatic     #10                 // Field valueHandlers:Ljava/util/Map;
+         3: aload_0
+         4: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+         9: checkcast     #12                 // class fr/zcraft/quartzlib/components/configuration/ValueHandler
+        12: astore_2
+        13: aload_2
+        14: ifnonnull     37
+        17: new           #12                 // class fr/zcraft/quartzlib/components/configuration/ValueHandler
+        20: dup
+        21: aload_0
+        22: invokespecial #13                 // Method fr/zcraft/quartzlib/components/configuration/ValueHandler."<init>":(Ljava/lang/Class;)V
+        25: astore_2
+        26: getstatic     #10                 // Field valueHandlers:Ljava/util/Map;
+        29: aload_0
+        30: aload_2
+        31: invokeinterface #14,  3           // InterfaceMethod java/util/Map.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+        36: pop
+        37: aload_1
+        38: invokevirtual #15                 // Method java/lang/reflect/Method.getParameterTypes:()[Ljava/lang/Class;
+        41: astore_3
+        42: aload_3
+        43: arraylength
+        44: iconst_1
+        45: if_icmpeq     83
+        48: new           #16                 // class java/lang/IllegalArgumentException
+        51: dup
+        52: new           #17                 // class java/lang/StringBuilder
+        55: dup
+        56: invokespecial #18                 // Method java/lang/StringBuilder."<init>":()V
+        59: ldc           #19                 // String Illegal value handler method \'
+        61: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        64: aload_1
+        65: invokevirtual #21                 // Method java/lang/reflect/Method.getName:()Ljava/lang/String;
+        68: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        71: ldc           #22                 // String \' : method has to take one argument.
+        73: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        76: invokevirtual #23                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        79: invokespecial #24                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        82: athrow
+        83: aload_2
+        84: aload_3
+        85: iconst_0
+        86: aaload
+        87: aload_1
+        88: invokevirtual #25                 // Method fr/zcraft/quartzlib/components/configuration/ValueHandler.addHandler:(Ljava/lang/Class;Ljava/lang/reflect/Method;)V
+        91: return
+
+  public static <T> T handleValue(java.lang.Object, java.lang.Class<T>) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aconst_null
+         3: aconst_null
+         4: invokestatic  #26                 // Method handleValue:(Ljava/lang/Object;Ljava/lang/Class;Lfr/zcraft/quartzlib/components/configuration/ConfigurationItem;Ljava/lang/String;)Ljava/lang/Object;
+         7: areturn
+
+  public static <T> T handleValue(java.lang.Object, java.lang.Class<T>, fr.zcraft.quartzlib.components.configuration.ConfigurationItem, java.lang.String) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: ifnonnull     6
+         4: aconst_null
+         5: areturn
+         6: aload_1
+         7: ifnonnull     12
+        10: aload_0
+        11: areturn
+        12: aload_0
+        13: instanceof    #27                 // class org/bukkit/configuration/MemorySection
+        16: ifeq          28
+        19: aload_0
+        20: checkcast     #27                 // class org/bukkit/configuration/MemorySection
+        23: iconst_0
+        24: invokevirtual #28                 // Method org/bukkit/configuration/MemorySection.getValues:(Z)Ljava/util/Map;
+        27: astore_0
+        28: aload_1
+        29: aload_0
+        30: invokevirtual #29                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        33: invokevirtual #30                 // Method java/lang/Class.isAssignableFrom:(Ljava/lang/Class;)Z
+        36: ifeq          41
+        39: aload_0
+        40: areturn
+        41: getstatic     #10                 // Field valueHandlers:Ljava/util/Map;
+        44: aload_1
+        45: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        50: checkcast     #12                 // class fr/zcraft/quartzlib/components/configuration/ValueHandler
+        53: astore        4
+        55: aload         4
+        57: ifnonnull     122
+        60: ldc           #31                 // class java/lang/Enum
+        62: aload_1
+        63: invokevirtual #30                 // Method java/lang/Class.isAssignableFrom:(Ljava/lang/Class;)Z
+        66: ifeq          75
+        69: aload_0
+        70: aload_1
+        71: invokestatic  #32                 // Method handleEnumValue:(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
+        74: areturn
+        75: ldc           #33                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationSection
+        77: aload_1
+        78: invokevirtual #30                 // Method java/lang/Class.isAssignableFrom:(Ljava/lang/Class;)Z
+        81: ifeq          92
+        84: aload_0
+        85: aload_1
+        86: aload_2
+        87: aload_3
+        88: invokestatic  #34                 // Method handleConfigurationItemValue:(Ljava/lang/Object;Ljava/lang/Class;Lfr/zcraft/quartzlib/components/configuration/ConfigurationItem;Ljava/lang/String;)Lfr/zcraft/quartzlib/components/configuration/ConfigurationSection;
+        91: areturn
+        92: new           #35                 // class java/lang/UnsupportedOperationException
+        95: dup
+        96: new           #17                 // class java/lang/StringBuilder
+        99: dup
+       100: invokespecial #18                 // Method java/lang/StringBuilder."<init>":()V
+       103: ldc           #36                 // String Unsupported configuration type :
+       105: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       108: aload_1
+       109: invokevirtual #37                 // Method java/lang/Class.getName:()Ljava/lang/String;
+       112: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       115: invokevirtual #23                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       118: invokespecial #38                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+       121: athrow
+       122: aload         4
+       124: aload_0
+       125: invokevirtual #39                 // Method fr/zcraft/quartzlib/components/configuration/ValueHandler.handleValue:(Ljava/lang/Object;)Ljava/lang/Object;
+       128: areturn
+       129: astore        5
+       131: new           #41                 // class java/lang/RuntimeException
+       134: dup
+       135: new           #17                 // class java/lang/StringBuilder
+       138: dup
+       139: invokespecial #18                 // Method java/lang/StringBuilder."<init>":()V
+       142: ldc           #42                 // String Unable to call handler for type
+       144: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       147: aload_1
+       148: invokevirtual #37                 // Method java/lang/Class.getName:()Ljava/lang/String;
+       151: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       154: invokevirtual #23                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       157: aload         5
+       159: invokespecial #43                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+       162: athrow
+       163: astore        5
+       165: aload         5
+       167: invokevirtual #45                 // Method java/lang/reflect/InvocationTargetException.getCause:()Ljava/lang/Throwable;
+       170: instanceof    #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+       173: ifeq          185
+       176: aload         5
+       178: invokevirtual #45                 // Method java/lang/reflect/InvocationTargetException.getCause:()Ljava/lang/Throwable;
+       181: checkcast     #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+       184: athrow
+       185: new           #41                 // class java/lang/RuntimeException
+       188: dup
+       189: new           #17                 // class java/lang/StringBuilder
+       192: dup
+       193: invokespecial #18                 // Method java/lang/StringBuilder."<init>":()V
+       196: ldc           #47                 // String Error while calling handler for type
+       198: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       201: aload_1
+       202: invokevirtual #37                 // Method java/lang/Class.getName:()Ljava/lang/String;
+       205: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+       208: invokevirtual #23                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+       211: aload         5
+       213: invokevirtual #45                 // Method java/lang/reflect/InvocationTargetException.getCause:()Ljava/lang/Throwable;
+       216: invokespecial #43                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/String;Ljava/lang/Throwable;)V
+       219: athrow
+      Exception table:
+         from    to  target type
+           122   128   129   Class java/lang/IllegalAccessException
+           122   128   129   Class java/lang/IllegalArgumentException
+           122   128   163   Class java/lang/reflect/InvocationTargetException
+
+  public static boolean handleBoolValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: invokestatic  #49                 // Method java/lang/Boolean.parseBoolean:(Ljava/lang/String;)Z
+         7: ireturn
+
+  public static byte handleByteValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: bipush        10
+         6: invokestatic  #50                 // Method java/lang/Byte.parseByte:(Ljava/lang/String;I)B
+         9: ireturn
+        10: astore_1
+        11: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        14: dup
+        15: ldc           #52                 // String Invalid byte value
+        17: aload_0
+        18: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        21: athrow
+      Exception table:
+         from    to  target type
+             0     9    10   Class java/lang/NumberFormatException
+
+  public static short handleShortValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: bipush        10
+         6: invokestatic  #54                 // Method java/lang/Short.parseShort:(Ljava/lang/String;I)S
+         9: ireturn
+        10: astore_1
+        11: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        14: dup
+        15: ldc           #55                 // String Invalid short value
+        17: aload_0
+        18: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        21: athrow
+      Exception table:
+         from    to  target type
+             0     9    10   Class java/lang/NumberFormatException
+
+  public static int handleIntValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: bipush        10
+         6: invokestatic  #56                 // Method java/lang/Integer.parseInt:(Ljava/lang/String;I)I
+         9: ireturn
+        10: astore_1
+        11: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        14: dup
+        15: ldc           #57                 // String Invalid integer value
+        17: aload_0
+        18: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        21: athrow
+      Exception table:
+         from    to  target type
+             0     9    10   Class java/lang/NumberFormatException
+
+  public static long handleLongValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: bipush        10
+         6: invokestatic  #58                 // Method java/lang/Long.parseLong:(Ljava/lang/String;I)J
+         9: lreturn
+        10: astore_1
+        11: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        14: dup
+        15: ldc           #59                 // String Invalid long value
+        17: aload_0
+        18: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        21: athrow
+      Exception table:
+         from    to  target type
+             0     9    10   Class java/lang/NumberFormatException
+
+  public static float handleFloatValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: invokestatic  #60                 // Method java/lang/Float.parseFloat:(Ljava/lang/String;)F
+         7: freturn
+         8: astore_1
+         9: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        12: dup
+        13: ldc           #61                 // String Invalid float value
+        15: aload_0
+        16: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        19: athrow
+      Exception table:
+         from    to  target type
+             0     7     8   Class java/lang/NumberFormatException
+
+  public static double handleDoubleValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: invokestatic  #62                 // Method java/lang/Double.parseDouble:(Ljava/lang/String;)D
+         7: dreturn
+         8: astore_1
+         9: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        12: dup
+        13: ldc           #63                 // String Invalid double value
+        15: aload_0
+        16: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        19: athrow
+      Exception table:
+         from    to  target type
+             0     7     8   Class java/lang/NumberFormatException
+
+  public static char handleCharValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: astore_1
+         5: aload_1
+         6: invokevirtual #64                 // Method java/lang/String.length:()I
+         9: iconst_1
+        10: if_icmple     24
+        13: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        16: dup
+        17: ldc           #65                 // String String is too long to fit in a single character
+        19: aload_0
+        20: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        23: athrow
+        24: aload_1
+        25: iconst_0
+        26: invokevirtual #66                 // Method java/lang/String.charAt:(I)C
+        29: ireturn
+
+  public static java.lang.String handleStringValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: areturn
+
+  public static java.util.Locale handleLocaleValue(java.lang.Object) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+         4: invokevirtual #67                 // Method java/lang/String.isEmpty:()Z
+         7: ifeq          12
+        10: aconst_null
+        11: areturn
+        12: new           #68                 // class java/util/Locale$Builder
+        15: dup
+        16: invokespecial #69                 // Method java/util/Locale$Builder."<init>":()V
+        19: aload_0
+        20: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+        23: invokevirtual #70                 // Method java/util/Locale$Builder.setLanguageTag:(Ljava/lang/String;)Ljava/util/Locale$Builder;
+        26: invokevirtual #71                 // Method java/util/Locale$Builder.build:()Ljava/util/Locale;
+        29: areturn
+        30: astore_1
+        31: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        34: dup
+        35: new           #17                 // class java/lang/StringBuilder
+        38: dup
+        39: invokespecial #18                 // Method java/lang/StringBuilder."<init>":()V
+        42: ldc           #73                 // String Illegal language tag :
+        44: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        47: aload_1
+        48: invokevirtual #74                 // Method java/util/IllformedLocaleException.getMessage:()Ljava/lang/String;
+        51: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        54: invokevirtual #23                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        57: aload_0
+        58: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        61: athrow
+      Exception table:
+         from    to  target type
+            12    29    30   Class java/util/IllformedLocaleException
+
+  public static <T> T handleEnumValue(java.lang.Object, java.lang.Class<T>) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: ifnonnull     6
+         4: aconst_null
+         5: areturn
+         6: aload_0
+         7: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+        10: invokevirtual #75                 // Method java/lang/String.toUpperCase:()Ljava/lang/String;
+        13: bipush        32
+        15: bipush        95
+        17: invokevirtual #76                 // Method java/lang/String.replace:(CC)Ljava/lang/String;
+        20: bipush        45
+        22: bipush        95
+        24: invokevirtual #76                 // Method java/lang/String.replace:(CC)Ljava/lang/String;
+        27: astore_2
+        28: aload_1
+        29: aload_2
+        30: invokestatic  #77                 // Method java/lang/Enum.valueOf:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/Enum;
+        33: areturn
+        34: astore_3
+        35: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        38: dup
+        39: new           #17                 // class java/lang/StringBuilder
+        42: dup
+        43: invokespecial #18                 // Method java/lang/StringBuilder."<init>":()V
+        46: ldc           #78                 // String Illegal enum value for type
+        48: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        51: aload_1
+        52: invokevirtual #37                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        55: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        58: invokevirtual #23                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        61: aload_0
+        62: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        65: athrow
+      Exception table:
+         from    to  target type
+            28    33    34   Class java/lang/IllegalArgumentException
+
+  public static <T> fr.zcraft.quartzlib.components.configuration.ConfigurationSection handleConfigurationItemValue(java.lang.Object, java.lang.Class<T>, fr.zcraft.quartzlib.components.configuration.ConfigurationItem, java.lang.String) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: ifnonnull     6
+         4: aconst_null
+         5: areturn
+         6: aload_0
+         7: instanceof    #79                 // class java/util/Map
+        10: ifne          31
+        13: aload_0
+        14: instanceof    #27                 // class org/bukkit/configuration/MemorySection
+        17: ifne          31
+        20: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        23: dup
+        24: ldc           #80                 // String Dictionary expected
+        26: aload_0
+        27: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        30: athrow
+        31: aload_2
+        32: ifnull        39
+        35: aload_3
+        36: ifnonnull     49
+        39: new           #35                 // class java/lang/UnsupportedOperationException
+        42: dup
+        43: ldc           #81                 // String ConfigurationSection values cannot be used here.
+        45: invokespecial #38                 // Method java/lang/UnsupportedOperationException."<init>":(Ljava/lang/String;)V
+        48: athrow
+        49: aload_1
+        50: iconst_0
+        51: anewarray     #82                 // class java/lang/Object
+        54: invokestatic  #83                 // Method fr/zcraft/quartzlib/tools/reflection/Reflection.instantiate:(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+        57: checkcast     #33                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationSection
+        60: astore        4
+        62: aload         4
+        64: aload_3
+        65: putfield      #84                 // Field fr/zcraft/quartzlib/components/configuration/ConfigurationSection.fieldName:Ljava/lang/String;
+        68: aload         4
+        70: aload_2
+        71: invokevirtual #85                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationSection.setParent:(Lfr/zcraft/quartzlib/components/configuration/ConfigurationItem;)V
+        74: aload         4
+        76: invokevirtual #86                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationSection.init:()V
+        79: goto          116
+        82: astore        5
+        84: ldc           #88                 // String Unable to instanciate configuration field \'{0}\' of type \'{1}\'
+        86: aload         5
+        88: iconst_2
+        89: anewarray     #82                 // class java/lang/Object
+        92: dup
+        93: iconst_0
+        94: aload_3
+        95: aastore
+        96: dup
+        97: iconst_1
+        98: aload_1
+        99: invokevirtual #37                 // Method java/lang/Class.getName:()Ljava/lang/String;
+       102: aastore
+       103: invokestatic  #89                 // Method fr/zcraft/quartzlib/tools/PluginLogger.warning:(Ljava/lang/String;Ljava/lang/Throwable;[Ljava/lang/Object;)V
+       106: new           #41                 // class java/lang/RuntimeException
+       109: dup
+       110: aload         5
+       112: invokespecial #90                 // Method java/lang/RuntimeException."<init>":(Ljava/lang/Throwable;)V
+       115: athrow
+       116: aload         4
+       118: areturn
+      Exception table:
+         from    to  target type
+            49    79    82   Class java/lang/Exception
+
+  public static <T> java.util.List<T> handleListValue(java.lang.Object, java.lang.Class<T>) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: instanceof    #91                 // class java/util/List
+         4: ifne          18
+         7: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        10: dup
+        11: ldc           #92                 // String List expected
+        13: aload_0
+        14: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        17: athrow
+        18: aload_0
+        19: checkcast     #91                 // class java/util/List
+        22: astore_2
+        23: new           #93                 // class java/util/ArrayList
+        26: dup
+        27: aload_2
+        28: invokeinterface #94,  1           // InterfaceMethod java/util/List.size:()I
+        33: invokespecial #95                 // Method java/util/ArrayList."<init>":(I)V
+        36: astore_3
+        37: aload_2
+        38: invokeinterface #96,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        43: astore        4
+        45: aload         4
+        47: invokeinterface #97,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        52: ifeq          88
+        55: aload         4
+        57: invokeinterface #98,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        62: astore        5
+        64: aload         5
+        66: ifnonnull     72
+        69: goto          45
+        72: aload_3
+        73: aload         5
+        75: aload_1
+        76: aconst_null
+        77: aconst_null
+        78: invokestatic  #26                 // Method handleValue:(Ljava/lang/Object;Ljava/lang/Class;Lfr/zcraft/quartzlib/components/configuration/ConfigurationItem;Ljava/lang/String;)Ljava/lang/Object;
+        81: invokevirtual #99                 // Method java/util/ArrayList.add:(Ljava/lang/Object;)Z
+        84: pop
+        85: goto          45
+        88: aload_3
+        89: areturn
+
+  public static <K, V> java.util.Map<K, V> handleMapValue(java.lang.Object, java.lang.Class<K>, java.lang.Class<V>) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aconst_null
+         4: invokestatic  #100                // Method handleMapValue:(Ljava/lang/Object;Ljava/lang/Class;Ljava/lang/Class;Lfr/zcraft/quartzlib/components/configuration/ConfigurationItem;)Ljava/util/Map;
+         7: areturn
+
+  public static <K, V> java.util.Map<K, V> handleMapValue(java.lang.Object, java.lang.Class<K>, java.lang.Class<V>, fr.zcraft.quartzlib.components.configuration.ConfigurationItem) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: instanceof    #79                 // class java/util/Map
+         4: ifeq          16
+         7: aload_0
+         8: checkcast     #79                 // class java/util/Map
+        11: astore        4
+        13: goto          47
+        16: aload_0
+        17: instanceof    #27                 // class org/bukkit/configuration/MemorySection
+        20: ifeq          36
+        23: aload_0
+        24: checkcast     #27                 // class org/bukkit/configuration/MemorySection
+        27: iconst_0
+        28: invokevirtual #28                 // Method org/bukkit/configuration/MemorySection.getValues:(Z)Ljava/util/Map;
+        31: astore        4
+        33: goto          47
+        36: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        39: dup
+        40: ldc           #80                 // String Dictionary expected
+        42: aload_0
+        43: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        46: athrow
+        47: new           #101                // class java/util/HashMap
+        50: dup
+        51: invokespecial #102                // Method java/util/HashMap."<init>":()V
+        54: astore        5
+        56: aload         4
+        58: invokeinterface #103,  1          // InterfaceMethod java/util/Map.entrySet:()Ljava/util/Set;
+        63: invokeinterface #104,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        68: astore        6
+        70: aload         6
+        72: invokeinterface #97,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        77: ifeq          167
+        80: aload         6
+        82: invokeinterface #98,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        87: checkcast     #105                // class java/util/Map$Entry
+        90: astore        7
+        92: aload         7
+        94: ifnonnull     100
+        97: goto          70
+       100: aload         7
+       102: invokeinterface #106,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+       107: ifnull        70
+       110: aload         7
+       112: invokeinterface #107,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       117: ifnonnull     123
+       120: goto          70
+       123: aload         5
+       125: aload         7
+       127: invokeinterface #106,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+       132: aload_1
+       133: aconst_null
+       134: aconst_null
+       135: invokestatic  #26                 // Method handleValue:(Ljava/lang/Object;Ljava/lang/Class;Lfr/zcraft/quartzlib/components/configuration/ConfigurationItem;Ljava/lang/String;)Ljava/lang/Object;
+       138: aload         7
+       140: invokeinterface #107,  1          // InterfaceMethod java/util/Map$Entry.getValue:()Ljava/lang/Object;
+       145: aload_2
+       146: aload_3
+       147: aload         7
+       149: invokeinterface #106,  1          // InterfaceMethod java/util/Map$Entry.getKey:()Ljava/lang/Object;
+       154: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+       157: invokestatic  #26                 // Method handleValue:(Ljava/lang/Object;Ljava/lang/Class;Lfr/zcraft/quartzlib/components/configuration/ConfigurationItem;Ljava/lang/String;)Ljava/lang/Object;
+       160: invokevirtual #108                // Method java/util/HashMap.put:(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+       163: pop
+       164: goto          70
+       167: aload         5
+       169: areturn
+
+  public static org.bukkit.util.Vector handleBukkitVectorValue(java.lang.String) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: ldc           #109                // String ,
+         3: invokevirtual #110                // Method java/lang/String.split:(Ljava/lang/String;)[Ljava/lang/String;
+         6: invokestatic  #111                // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+         9: invokestatic  #112                // Method handleBukkitVectorValue:(Ljava/util/List;)Lorg/bukkit/util/Vector;
+        12: areturn
+
+  public static org.bukkit.util.Vector handleBukkitVectorValue(java.util.List) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokeinterface #94,  1           // InterfaceMethod java/util/List.size:()I
+         6: iconst_2
+         7: if_icmpge     21
+        10: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        13: dup
+        14: ldc           #113                // String Not enough values, at least 2 (x,z) are required.
+        16: aload_0
+        17: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        20: athrow
+        21: aload_0
+        22: invokeinterface #94,  1           // InterfaceMethod java/util/List.size:()I
+        27: iconst_3
+        28: if_icmple     42
+        31: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        34: dup
+        35: ldc           #114                // String Too many values, at most 3 (x,y,z) can be used.
+        37: aload_0
+        38: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        41: athrow
+        42: aload_0
+        43: invokeinterface #94,  1           // InterfaceMethod java/util/List.size:()I
+        48: iconst_2
+        49: if_icmpne     81
+        52: new           #115                // class org/bukkit/util/Vector
+        55: dup
+        56: aload_0
+        57: iconst_0
+        58: invokeinterface #116,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+        63: invokestatic  #117                // Method handleDoubleValue:(Ljava/lang/Object;)D
+        66: dconst_0
+        67: aload_0
+        68: iconst_1
+        69: invokeinterface #116,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+        74: invokestatic  #117                // Method handleDoubleValue:(Ljava/lang/Object;)D
+        77: invokespecial #118                // Method org/bukkit/util/Vector."<init>":(DDD)V
+        80: areturn
+        81: new           #115                // class org/bukkit/util/Vector
+        84: dup
+        85: aload_0
+        86: iconst_0
+        87: invokeinterface #116,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+        92: invokestatic  #117                // Method handleDoubleValue:(Ljava/lang/Object;)D
+        95: aload_0
+        96: iconst_1
+        97: invokeinterface #116,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       102: invokestatic  #117                // Method handleDoubleValue:(Ljava/lang/Object;)D
+       105: aload_0
+       106: iconst_2
+       107: invokeinterface #116,  2          // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+       112: invokestatic  #117                // Method handleDoubleValue:(Ljava/lang/Object;)D
+       115: invokespecial #118                // Method org/bukkit/util/Vector."<init>":(DDD)V
+       118: areturn
+
+  public static org.bukkit.util.Vector handleBukkitVectorValue(java.util.Map) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: ldc           #119                // String x
+         3: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+         8: ifeq          25
+        11: aload_0
+        12: ldc           #119                // String x
+        14: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        19: invokestatic  #117                // Method handleDoubleValue:(Ljava/lang/Object;)D
+        22: goto          26
+        25: dconst_0
+        26: dstore_1
+        27: aload_0
+        28: ldc           #121                // String y
+        30: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        35: ifeq          52
+        38: aload_0
+        39: ldc           #121                // String y
+        41: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        46: invokestatic  #117                // Method handleDoubleValue:(Ljava/lang/Object;)D
+        49: goto          53
+        52: dconst_0
+        53: dstore_3
+        54: aload_0
+        55: ldc           #122                // String z
+        57: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        62: ifeq          79
+        65: aload_0
+        66: ldc           #122                // String z
+        68: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        73: invokestatic  #117                // Method handleDoubleValue:(Ljava/lang/Object;)D
+        76: goto          80
+        79: dconst_0
+        80: dstore        5
+        82: new           #115                // class org/bukkit/util/Vector
+        85: dup
+        86: dload_1
+        87: dload_3
+        88: dload         5
+        90: invokespecial #118                // Method org/bukkit/util/Vector."<init>":(DDD)V
+        93: areturn
+
+  public static org.bukkit.World handleBukkitWorldValue(java.lang.String) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #123                // Method java/lang/String.trim:()Ljava/lang/String;
+         4: astore_1
+         5: invokestatic  #124                // Method org/bukkit/Bukkit.getWorlds:()Ljava/util/List;
+         8: invokeinterface #96,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        13: astore_2
+        14: aload_2
+        15: invokeinterface #97,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        20: ifeq          51
+        23: aload_2
+        24: invokeinterface #98,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        29: checkcast     #125                // class org/bukkit/World
+        32: astore_3
+        33: aload_3
+        34: invokeinterface #126,  1          // InterfaceMethod org/bukkit/World.getName:()Ljava/lang/String;
+        39: aload_1
+        40: invokevirtual #127                // Method java/lang/String.equalsIgnoreCase:(Ljava/lang/String;)Z
+        43: ifeq          48
+        46: aload_3
+        47: areturn
+        48: goto          14
+        51: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        54: dup
+        55: ldc           #128                // String World not found
+        57: aload_0
+        58: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        61: athrow
+
+  public static org.bukkit.enchantments.Enchantment handleEnchantmentValue(java.lang.String) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #75                 // Method java/lang/String.toUpperCase:()Ljava/lang/String;
+         4: invokestatic  #129                // Method org/bukkit/enchantments/Enchantment.getByName:(Ljava/lang/String;)Lorg/bukkit/enchantments/Enchantment;
+         7: astore_1
+         8: aload_1
+         9: ifnonnull     23
+        12: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        15: dup
+        16: ldc           #130                // String Invalid enchantment name
+        18: aload_0
+        19: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        22: athrow
+        23: aload_1
+        24: areturn
+
+  public static org.bukkit.inventory.ItemStack handleItemStackValue(java.util.Map) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: ldc           #131                // String type
+         3: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+         8: ifne          22
+        11: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        14: dup
+        15: ldc           #132                // String Key \'type\' required.
+        17: aload_0
+        18: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        21: athrow
+        22: aload_0
+        23: ldc           #131                // String type
+        25: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        30: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+        33: invokestatic  #133                // Method org/bukkit/Material.matchMaterial:(Ljava/lang/String;)Lorg/bukkit/Material;
+        36: astore_1
+        37: aload_1
+        38: ifnonnull     84
+        41: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        44: dup
+        45: new           #17                 // class java/lang/StringBuilder
+        48: dup
+        49: invokespecial #18                 // Method java/lang/StringBuilder."<init>":()V
+        52: ldc           #134                // String This material does not exist: \'
+        54: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        57: aload_0
+        58: ldc           #131                // String type
+        60: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        65: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+        68: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        71: ldc           #135                // String \'.
+        73: invokevirtual #20                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        76: invokevirtual #23                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        79: aload_0
+        80: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        83: athrow
+        84: aload_0
+        85: ldc           #136                // String amount
+        87: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        92: ifeq          109
+        95: aload_0
+        96: ldc           #136                // String amount
+        98: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       103: invokestatic  #137                // Method handleIntValue:(Ljava/lang/Object;)I
+       106: goto          110
+       109: iconst_1
+       110: istore_2
+       111: iconst_0
+       112: istore        4
+       114: aload_1
+       115: getstatic     #138                // Field org/bukkit/Material.POTION:Lorg/bukkit/Material;
+       118: invokevirtual #139                // Method org/bukkit/Material.equals:(Ljava/lang/Object;)Z
+       121: ifeq          147
+       124: aload_0
+       125: invokestatic  #140                // Method handlePotionValue:(Ljava/util/Map;)Lorg/bukkit/potion/Potion;
+       128: astore        5
+       130: new           #141                // class fr/zcraft/quartzlib/tools/items/ItemStackBuilder
+       133: dup
+       134: aload         5
+       136: iload_2
+       137: invokevirtual #142                // Method org/bukkit/potion/Potion.toItemStack:(I)Lorg/bukkit/inventory/ItemStack;
+       140: invokespecial #143                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder."<init>":(Lorg/bukkit/inventory/ItemStack;)V
+       143: astore_3
+       144: goto          157
+       147: new           #141                // class fr/zcraft/quartzlib/tools/items/ItemStackBuilder
+       150: dup
+       151: aload_1
+       152: iload_2
+       153: invokespecial #144                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder."<init>":(Lorg/bukkit/Material;I)V
+       156: astore_3
+       157: aload_0
+       158: ldc           #145                // String title
+       160: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       165: ifeq          191
+       168: aload_3
+       169: iconst_1
+       170: anewarray     #146                // class java/lang/String
+       173: dup
+       174: iconst_0
+       175: aload_0
+       176: ldc           #145                // String title
+       178: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       183: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+       186: aastore
+       187: invokevirtual #147                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder.title:([Ljava/lang/String;)Lfr/zcraft/quartzlib/tools/items/ItemStackBuilder;
+       190: pop
+       191: aload_0
+       192: ldc           #148                // String lore
+       194: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       199: ifeq          220
+       202: aload_3
+       203: aload_0
+       204: ldc           #148                // String lore
+       206: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       211: ldc           #146                // class java/lang/String
+       213: invokestatic  #149                // Method handleListValue:(Ljava/lang/Object;Ljava/lang/Class;)Ljava/util/List;
+       216: invokevirtual #150                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder.lore:(Ljava/util/List;)Lfr/zcraft/quartzlib/tools/items/ItemStackBuilder;
+       219: pop
+       220: aload_0
+       221: ldc           #151                // String glow
+       223: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       228: ifeq          247
+       231: aload_3
+       232: aload_0
+       233: ldc           #151                // String glow
+       235: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       240: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       243: invokevirtual #153                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder.glow:(Z)Lfr/zcraft/quartzlib/tools/items/ItemStackBuilder;
+       246: pop
+       247: aload_0
+       248: ldc           #154                // String hideAttributes
+       250: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       255: ifeq          277
+       258: aload_0
+       259: ldc           #154                // String hideAttributes
+       261: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       266: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       269: ifeq          277
+       272: aload_3
+       273: invokevirtual #155                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder.hideAllAttributes:()Lfr/zcraft/quartzlib/tools/items/ItemStackBuilder;
+       276: pop
+       277: aload_0
+       278: ldc           #156                // String enchantments
+       280: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       285: ifeq          308
+       288: aload_3
+       289: aload_0
+       290: ldc           #156                // String enchantments
+       292: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       297: ldc           #157                // class org/bukkit/enchantments/Enchantment
+       299: ldc           #158                // class java/lang/Integer
+       301: invokestatic  #159                // Method handleMapValue:(Ljava/lang/Object;Ljava/lang/Class;Ljava/lang/Class;)Ljava/util/Map;
+       304: invokevirtual #160                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder.enchant:(Ljava/util/Map;)Lfr/zcraft/quartzlib/tools/items/ItemStackBuilder;
+       307: pop
+       308: aload_0
+       309: ldc           #161                // String nbt
+       311: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       316: ifeq          350
+       319: aload_0
+       320: ldc           #161                // String nbt
+       322: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       327: astore        5
+       329: aload         5
+       331: instanceof    #79                 // class java/util/Map
+       334: ifeq          350
+       337: aload_3
+       338: aload         5
+       340: checkcast     #79                 // class java/util/Map
+       343: invokevirtual #162                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder.nbt:(Ljava/util/Map;)Lfr/zcraft/quartzlib/tools/items/ItemStackBuilder;
+       346: pop
+       347: iconst_1
+       348: istore        4
+       350: iload         4
+       352: ifeq          362
+       355: aload_3
+       356: invokevirtual #163                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder.craftItem:()Lorg/bukkit/inventory/ItemStack;
+       359: goto          366
+       362: aload_3
+       363: invokevirtual #164                // Method fr/zcraft/quartzlib/tools/items/ItemStackBuilder.item:()Lorg/bukkit/inventory/ItemStack;
+       366: areturn
+
+  public static org.bukkit.potion.Potion handlePotionValue(java.util.Map) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: ldc           #165                // String effect
+         3: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+         8: ifne          22
+        11: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        14: dup
+        15: ldc           #166                // String Potion effect is required.
+        17: aload_0
+        18: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        21: athrow
+        22: aload_0
+        23: ldc           #165                // String effect
+        25: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        30: ldc           #167                // class org/bukkit/potion/PotionType
+        32: invokestatic  #32                 // Method handleEnumValue:(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
+        35: checkcast     #167                // class org/bukkit/potion/PotionType
+        38: astore_1
+        39: aload_0
+        40: ldc           #168                // String level
+        42: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        47: ifeq          64
+        50: aload_0
+        51: ldc           #168                // String level
+        53: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        58: invokestatic  #169                // Method handleByteValue:(Ljava/lang/Object;)B
+        61: goto          65
+        64: iconst_1
+        65: istore_2
+        66: aload_0
+        67: ldc           #170                // String splash
+        69: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        74: ifeq          95
+        77: aload_0
+        78: ldc           #170                // String splash
+        80: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        85: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+        88: ifeq          95
+        91: iconst_1
+        92: goto          96
+        95: iconst_0
+        96: istore_3
+        97: aload_0
+        98: ldc           #171                // String extended
+       100: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       105: ifeq          126
+       108: aload_0
+       109: ldc           #171                // String extended
+       111: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       116: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       119: ifeq          126
+       122: iconst_1
+       123: goto          127
+       126: iconst_0
+       127: istore        4
+       129: new           #172                // class org/bukkit/potion/Potion
+       132: dup
+       133: aload_1
+       134: iload_2
+       135: iload_3
+       136: iload         4
+       138: invokespecial #173                // Method org/bukkit/potion/Potion."<init>":(Lorg/bukkit/potion/PotionType;IZZ)V
+       141: areturn
+
+  public static org.bukkit.potion.PotionEffectType handlePotionEffectTypeValue(java.lang.String) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokestatic  #174                // Method org/bukkit/potion/PotionEffectType.getByName:(Ljava/lang/String;)Lorg/bukkit/potion/PotionEffectType;
+         4: astore_1
+         5: aload_1
+         6: ifnonnull     20
+         9: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        12: dup
+        13: ldc           #175                // String This potion effect does not exist.
+        15: aload_0
+        16: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        19: athrow
+        20: aload_1
+        21: areturn
+
+  public static org.bukkit.potion.PotionEffect handlePotionEffectValue(java.lang.String) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: new           #176                // class org/bukkit/potion/PotionEffect
+         3: dup
+         4: aload_0
+         5: invokestatic  #177                // Method handlePotionEffectTypeValue:(Ljava/lang/String;)Lorg/bukkit/potion/PotionEffectType;
+         8: bipush        30
+        10: iconst_1
+        11: invokespecial #178                // Method org/bukkit/potion/PotionEffect."<init>":(Lorg/bukkit/potion/PotionEffectType;II)V
+        14: areturn
+
+  public static org.bukkit.potion.PotionEffect handlePotionEffectValue(java.util.Map<?, ?>) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: ldc           #179                // String color
+         3: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+         8: ifeq          22
+        11: aload_0
+        12: ldc           #179                // String color
+        14: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        19: ifnonnull     26
+        22: aconst_null
+        23: goto          40
+        26: aload_0
+        27: ldc           #179                // String color
+        29: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        34: invokestatic  #137                // Method handleIntValue:(Ljava/lang/Object;)I
+        37: invokestatic  #180                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+        40: astore_1
+        41: aload_0
+        42: ldc           #165                // String effect
+        44: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        49: ifne          63
+        52: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        55: dup
+        56: ldc           #166                // String Potion effect is required.
+        58: aload_0
+        59: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        62: athrow
+        63: aload_0
+        64: ldc           #165                // String effect
+        66: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        71: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+        74: invokestatic  #177                // Method handlePotionEffectTypeValue:(Ljava/lang/String;)Lorg/bukkit/potion/PotionEffectType;
+        77: astore_2
+        78: ldc           #176                // class org/bukkit/potion/PotionEffect
+        80: bipush        6
+        82: anewarray     #82                 // class java/lang/Object
+        85: dup
+        86: iconst_0
+        87: aload_2
+        88: aastore
+        89: dup
+        90: iconst_1
+        91: aload_0
+        92: ldc           #181                // String duration
+        94: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+        99: ifeq          116
+       102: aload_0
+       103: ldc           #181                // String duration
+       105: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       110: invokestatic  #137                // Method handleIntValue:(Ljava/lang/Object;)I
+       113: goto          117
+       116: iconst_1
+       117: invokestatic  #180                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       120: aastore
+       121: dup
+       122: iconst_2
+       123: aload_0
+       124: ldc           #182                // String amplifier
+       126: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       131: ifeq          148
+       134: aload_0
+       135: ldc           #182                // String amplifier
+       137: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       142: invokestatic  #137                // Method handleIntValue:(Ljava/lang/Object;)I
+       145: goto          149
+       148: iconst_1
+       149: invokestatic  #180                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       152: aastore
+       153: dup
+       154: iconst_3
+       155: aload_0
+       156: ldc           #183                // String ambient
+       158: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       163: ifeq          184
+       166: aload_0
+       167: ldc           #183                // String ambient
+       169: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       174: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       177: ifeq          184
+       180: iconst_1
+       181: goto          185
+       184: iconst_0
+       185: invokestatic  #184                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       188: aastore
+       189: dup
+       190: iconst_4
+       191: aload_0
+       192: ldc           #185                // String has-particles
+       194: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       199: ifeq          220
+       202: aload_0
+       203: ldc           #185                // String has-particles
+       205: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       210: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       213: ifeq          220
+       216: iconst_1
+       217: goto          221
+       220: iconst_0
+       221: invokestatic  #184                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       224: aastore
+       225: dup
+       226: iconst_5
+       227: aload_0
+       228: ldc           #186                // String has-icon
+       230: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       235: ifeq          256
+       238: aload_0
+       239: ldc           #186                // String has-icon
+       241: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       246: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       249: ifeq          256
+       252: iconst_1
+       253: goto          257
+       256: iconst_0
+       257: invokestatic  #184                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       260: aastore
+       261: invokestatic  #83                 // Method fr/zcraft/quartzlib/tools/reflection/Reflection.instantiate:(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+       264: checkcast     #176                // class org/bukkit/potion/PotionEffect
+       267: areturn
+       268: astore_3
+       269: ldc           #176                // class org/bukkit/potion/PotionEffect
+       271: bipush        6
+       273: anewarray     #82                 // class java/lang/Object
+       276: dup
+       277: iconst_0
+       278: aload_2
+       279: aastore
+       280: dup
+       281: iconst_1
+       282: aload_0
+       283: ldc           #181                // String duration
+       285: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       290: ifeq          307
+       293: aload_0
+       294: ldc           #181                // String duration
+       296: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       301: invokestatic  #137                // Method handleIntValue:(Ljava/lang/Object;)I
+       304: goto          308
+       307: iconst_1
+       308: invokestatic  #180                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       311: aastore
+       312: dup
+       313: iconst_2
+       314: aload_0
+       315: ldc           #182                // String amplifier
+       317: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       322: ifeq          339
+       325: aload_0
+       326: ldc           #182                // String amplifier
+       328: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       333: invokestatic  #137                // Method handleIntValue:(Ljava/lang/Object;)I
+       336: goto          340
+       339: iconst_1
+       340: invokestatic  #180                // Method java/lang/Integer.valueOf:(I)Ljava/lang/Integer;
+       343: aastore
+       344: dup
+       345: iconst_3
+       346: aload_0
+       347: ldc           #183                // String ambient
+       349: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       354: ifeq          375
+       357: aload_0
+       358: ldc           #183                // String ambient
+       360: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       365: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       368: ifeq          375
+       371: iconst_1
+       372: goto          376
+       375: iconst_0
+       376: invokestatic  #184                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       379: aastore
+       380: dup
+       381: iconst_4
+       382: aload_0
+       383: ldc           #185                // String has-particles
+       385: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       390: ifeq          411
+       393: aload_0
+       394: ldc           #185                // String has-particles
+       396: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       401: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       404: ifeq          411
+       407: iconst_1
+       408: goto          412
+       411: iconst_0
+       412: invokestatic  #184                // Method java/lang/Boolean.valueOf:(Z)Ljava/lang/Boolean;
+       415: aastore
+       416: dup
+       417: iconst_5
+       418: aload_1
+       419: ifnull        432
+       422: aload_1
+       423: invokevirtual #189                // Method java/lang/Integer.intValue:()I
+       426: invokestatic  #190                // Method org/bukkit/Color.fromRGB:(I)Lorg/bukkit/Color;
+       429: goto          433
+       432: aconst_null
+       433: aastore
+       434: invokestatic  #83                 // Method fr/zcraft/quartzlib/tools/reflection/Reflection.instantiate:(Ljava/lang/Class;[Ljava/lang/Object;)Ljava/lang/Object;
+       437: checkcast     #176                // class org/bukkit/potion/PotionEffect
+       440: areturn
+       441: astore        4
+       443: new           #176                // class org/bukkit/potion/PotionEffect
+       446: dup
+       447: aload_2
+       448: aload_0
+       449: ldc           #181                // String duration
+       451: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       456: ifeq          473
+       459: aload_0
+       460: ldc           #181                // String duration
+       462: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       467: invokestatic  #137                // Method handleIntValue:(Ljava/lang/Object;)I
+       470: goto          474
+       473: iconst_1
+       474: aload_0
+       475: ldc           #182                // String amplifier
+       477: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       482: ifeq          499
+       485: aload_0
+       486: ldc           #182                // String amplifier
+       488: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       493: invokestatic  #137                // Method handleIntValue:(Ljava/lang/Object;)I
+       496: goto          500
+       499: iconst_1
+       500: aload_0
+       501: ldc           #183                // String ambient
+       503: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       508: ifeq          529
+       511: aload_0
+       512: ldc           #183                // String ambient
+       514: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       519: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       522: ifeq          529
+       525: iconst_1
+       526: goto          530
+       529: iconst_0
+       530: aload_0
+       531: ldc           #185                // String has-particles
+       533: invokeinterface #120,  2          // InterfaceMethod java/util/Map.containsKey:(Ljava/lang/Object;)Z
+       538: ifeq          559
+       541: aload_0
+       542: ldc           #185                // String has-particles
+       544: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+       549: invokestatic  #152                // Method handleBoolValue:(Ljava/lang/Object;)Z
+       552: ifeq          559
+       555: iconst_1
+       556: goto          560
+       559: iconst_0
+       560: invokespecial #191                // Method org/bukkit/potion/PotionEffect."<init>":(Lorg/bukkit/potion/PotionEffectType;IIZZ)V
+       563: areturn
+      Exception table:
+         from    to  target type
+            78   267   268   Class java/lang/NoSuchMethodException
+            78   267   268   Class java/lang/InstantiationException
+            78   267   268   Class java/lang/IllegalAccessException
+            78   267   268   Class java/lang/reflect/InvocationTargetException
+           269   440   441   Class java/lang/NoSuchMethodException
+           269   440   441   Class java/lang/InstantiationException
+           269   440   441   Class java/lang/IllegalAccessException
+           269   440   441   Class java/lang/reflect/InvocationTargetException
+
+  public static org.bukkit.DyeColor handleDyeColorValue(java.lang.Integer) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: invokevirtual #189                // Method java/lang/Integer.intValue:()I
+         4: i2b
+         5: invokestatic  #192                // Method org/bukkit/DyeColor.getByDyeData:(B)Lorg/bukkit/DyeColor;
+         8: astore_1
+         9: aload_1
+        10: ifnonnull     24
+        13: new           #46                 // class fr/zcraft/quartzlib/components/configuration/ConfigurationParseException
+        16: dup
+        17: ldc           #193                // String Invalid dye color code
+        19: aload_0
+        20: invokespecial #53                 // Method fr/zcraft/quartzlib/components/configuration/ConfigurationParseException."<init>":(Ljava/lang/String;Ljava/lang/Object;)V
+        23: athrow
+        24: aload_1
+        25: areturn
+
+  private static java.lang.Object getRawValue(java.util.Map, java.lang.String);
+    Code:
+         0: aconst_null
+         1: astore_2
+         2: aload_0
+         3: invokeinterface #194,  1          // InterfaceMethod java/util/Map.keySet:()Ljava/util/Set;
+         8: invokeinterface #104,  1          // InterfaceMethod java/util/Set.iterator:()Ljava/util/Iterator;
+        13: astore_3
+        14: aload_3
+        15: invokeinterface #97,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        20: ifeq          55
+        23: aload_3
+        24: invokeinterface #98,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        29: astore        4
+        31: aload         4
+        33: invokevirtual #48                 // Method java/lang/Object.toString:()Ljava/lang/String;
+        36: aload_1
+        37: invokevirtual #127                // Method java/lang/String.equalsIgnoreCase:(Ljava/lang/String;)Z
+        40: ifeq          52
+        43: aload_0
+        44: aload         4
+        46: invokeinterface #11,  2           // InterfaceMethod java/util/Map.get:(Ljava/lang/Object;)Ljava/lang/Object;
+        51: astore_2
+        52: goto          14
+        55: aload_2
+        56: areturn
+
+  public static org.bukkit.inventory.meta.BannerMeta handleBannerValue(java.util.Map) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: new           #195                // class org/bukkit/inventory/ItemStack
+         3: dup
+         4: getstatic     #196                // Field org/bukkit/Material.WHITE_BANNER:Lorg/bukkit/Material;
+         7: invokespecial #197                // Method org/bukkit/inventory/ItemStack."<init>":(Lorg/bukkit/Material;)V
+        10: invokevirtual #198                // Method org/bukkit/inventory/ItemStack.getItemMeta:()Lorg/bukkit/inventory/meta/ItemMeta;
+        13: checkcast     #199                // class org/bukkit/inventory/meta/BannerMeta
+        16: astore_1
+        17: aload_0
+        18: ldc           #179                // String color
+        20: getstatic     #200                // Field org/bukkit/DyeColor.BLACK:Lorg/bukkit/DyeColor;
+        23: invokestatic  #201                // Method getValue:(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+        26: checkcast     #202                // class org/bukkit/DyeColor
+        29: astore_2
+        30: aload_0
+        31: ldc           #203                // String patterns
+        33: new           #93                 // class java/util/ArrayList
+        36: dup
+        37: invokespecial #204                // Method java/util/ArrayList."<init>":()V
+        40: ldc           #82                 // class java/lang/Object
+        42: invokestatic  #205                // Method getListValue:(Ljava/util/Map;Ljava/lang/String;Ljava/util/List;Ljava/lang/Class;)Ljava/util/List;
+        45: astore_3
+        46: aload_1
+        47: aload_2
+        48: invokeinterface #206,  2          // InterfaceMethod org/bukkit/inventory/meta/BannerMeta.setBaseColor:(Lorg/bukkit/DyeColor;)V
+        53: aload_3
+        54: invokeinterface #96,  1           // InterfaceMethod java/util/List.iterator:()Ljava/util/Iterator;
+        59: astore        4
+        61: aload         4
+        63: invokeinterface #97,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        68: ifeq          143
+        71: aload         4
+        73: invokeinterface #98,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        78: astore        5
+        80: aload         5
+        82: ldc           #146                // class java/lang/String
+        84: ldc           #82                 // class java/lang/Object
+        86: invokestatic  #159                // Method handleMapValue:(Ljava/lang/Object;Ljava/lang/Class;Ljava/lang/Class;)Ljava/util/Map;
+        89: astore        6
+        91: aload         6
+        93: ldc           #179                // String color
+        95: getstatic     #200                // Field org/bukkit/DyeColor.BLACK:Lorg/bukkit/DyeColor;
+        98: invokestatic  #201                // Method getValue:(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+       101: checkcast     #202                // class org/bukkit/DyeColor
+       104: astore        7
+       106: aload         6
+       108: ldc           #207                // String pattern
+       110: ldc           #208                // String
+       112: invokestatic  #201                // Method getValue:(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;)Ljava/lang/Object;
+       115: checkcast     #146                // class java/lang/String
+       118: astore        8
+       120: aload_1
+       121: new           #209                // class org/bukkit/block/banner/Pattern
+       124: dup
+       125: aload         7
+       127: aload         8
+       129: invokestatic  #210                // Method org/bukkit/block/banner/PatternType.getByIdentifier:(Ljava/lang/String;)Lorg/bukkit/block/banner/PatternType;
+       132: invokespecial #211                // Method org/bukkit/block/banner/Pattern."<init>":(Lorg/bukkit/DyeColor;Lorg/bukkit/block/banner/PatternType;)V
+       135: invokeinterface #212,  2          // InterfaceMethod org/bukkit/inventory/meta/BannerMeta.addPattern:(Lorg/bukkit/block/banner/Pattern;)V
+       140: goto          61
+       143: aload_1
+       144: areturn
+
+  public static <T> T getValue(java.util.Map, java.lang.String, T) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: aload_2
+         4: invokevirtual #29                 // Method java/lang/Object.getClass:()Ljava/lang/Class;
+         7: invokestatic  #213                // Method getValue:(Ljava/util/Map;Ljava/lang/String;Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
+        10: areturn
+
+  public static <T> T getValue(java.util.Map, java.lang.String, T, java.lang.Class<T>) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #214                // Method getRawValue:(Ljava/util/Map;Ljava/lang/String;)Ljava/lang/Object;
+         5: astore        4
+         7: aload         4
+         9: ifnonnull     14
+        12: aload_2
+        13: areturn
+        14: aload         4
+        16: aload_3
+        17: invokestatic  #215                // Method handleValue:(Ljava/lang/Object;Ljava/lang/Class;)Ljava/lang/Object;
+        20: areturn
+
+  public static <T> java.util.List<T> getListValue(java.util.Map, java.lang.String, java.util.List<T>, java.lang.Class<T>) throws fr.zcraft.quartzlib.components.configuration.ConfigurationParseException;
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #214                // Method getRawValue:(Ljava/util/Map;Ljava/lang/String;)Ljava/lang/Object;
+         5: astore        4
+         7: aload         4
+         9: ifnonnull     14
+        12: aload_2
+        13: areturn
+        14: aload         4
+        16: aload_3
+        17: invokestatic  #149                // Method handleListValue:(Ljava/lang/Object;Ljava/lang/Class;)Ljava/util/List;
+        20: areturn
+
+  static {};
+    Code:
+         0: new           #101                // class java/util/HashMap
+         3: dup
+         4: invokespecial #102                // Method java/util/HashMap."<init>":()V
+         7: putstatic     #10                 // Field valueHandlers:Ljava/util/Map;
+        10: ldc           #216                // class fr/zcraft/quartzlib/components/configuration/ConfigurationValueHandlers
+        12: invokestatic  #217                // Method registerHandlers:(Ljava/lang/Class;)V
+        15: return
+}

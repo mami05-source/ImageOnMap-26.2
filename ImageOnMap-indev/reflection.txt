@@ -1,0 +1,692 @@
+Compiled from "Reflection.java"
+public final class fr.zcraft.quartzlib.tools.reflection.Reflection {
+  public static java.lang.String getBukkitPackageVersion();
+    Code:
+         0: invokestatic  #2                  // Method getBukkitPackageName:()Ljava/lang/String;
+         3: ldc           #3                  // String org.bukkit.craftbukkit.
+         5: invokevirtual #4                  // Method java/lang/String.length:()I
+         8: invokevirtual #5                  // Method java/lang/String.substring:(I)Ljava/lang/String;
+        11: areturn
+
+  public static java.lang.String getBukkitPackageName();
+    Code:
+         0: invokestatic  #6                  // Method org/bukkit/Bukkit.getServer:()Lorg/bukkit/Server;
+         3: invokevirtual #7                  // Method java/lang/Object.getClass:()Ljava/lang/Class;
+         6: invokevirtual #8                  // Method java/lang/Class.getPackage:()Ljava/lang/Package;
+         9: invokevirtual #9                  // Method java/lang/Package.getName:()Ljava/lang/String;
+        12: areturn
+
+  public static java.lang.String getMinecraftPackageName();
+    Code:
+         0: new           #10                 // class java/lang/StringBuilder
+         3: dup
+         4: invokespecial #11                 // Method java/lang/StringBuilder."<init>":()V
+         7: ldc           #12                 // String net.minecraft.server.
+         9: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        12: invokestatic  #14                 // Method getBukkitPackageVersion:()Ljava/lang/String;
+        15: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        18: invokevirtual #15                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        21: areturn
+
+  public static java.lang.Class<?> getBukkitClassByName(java.lang.String) throws java.lang.ClassNotFoundException;
+    Code:
+         0: new           #10                 // class java/lang/StringBuilder
+         3: dup
+         4: invokespecial #11                 // Method java/lang/StringBuilder."<init>":()V
+         7: invokestatic  #2                  // Method getBukkitPackageName:()Ljava/lang/String;
+        10: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: ldc           #16                 // String .
+        15: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        18: aload_0
+        19: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        22: invokevirtual #15                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        25: invokestatic  #17                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+        28: areturn
+
+  public static java.lang.Class getMinecraft1_17ClassByName(java.lang.String) throws java.lang.ClassNotFoundException;
+    Code:
+         0: new           #10                 // class java/lang/StringBuilder
+         3: dup
+         4: invokespecial #11                 // Method java/lang/StringBuilder."<init>":()V
+         7: ldc           #18                 // String net.minecraft.
+         9: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        12: aload_0
+        13: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        16: invokevirtual #15                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        19: invokestatic  #17                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+        22: areturn
+
+  public static java.lang.Class getMinecraftClassByName(java.lang.String) throws java.lang.ClassNotFoundException;
+    Code:
+         0: new           #10                 // class java/lang/StringBuilder
+         3: dup
+         4: invokespecial #11                 // Method java/lang/StringBuilder."<init>":()V
+         7: invokestatic  #19                 // Method getMinecraftPackageName:()Ljava/lang/String;
+        10: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        13: ldc           #16                 // String .
+        15: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        18: aload_0
+        19: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        22: invokevirtual #15                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        25: invokestatic  #17                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+        28: areturn
+
+  public static java.lang.Object getFieldValue(java.lang.Class<?>, java.lang.Object, java.lang.String) throws java.lang.NoSuchFieldException, java.lang.IllegalArgumentException, java.lang.IllegalAccessException;
+    Code:
+         0: aload_0
+         1: aload_2
+         2: invokestatic  #20                 // Method getField:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
+         5: aload_1
+         6: invokevirtual #21                 // Method java/lang/reflect/Field.get:(Ljava/lang/Object;)Ljava/lang/Object;
+         9: areturn
+
+  public static java.lang.Object getFieldValue(java.lang.Object, java.lang.String) throws java.lang.NoSuchFieldException, java.lang.IllegalArgumentException, java.lang.IllegalAccessException;
+    Code:
+         0: aload_0
+         1: ifnonnull     14
+         4: new           #22                 // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #23                 // String Cannot infer object type : instance is null.
+        10: invokespecial #24                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: invokevirtual #7                  // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        18: aload_0
+        19: aload_1
+        20: invokestatic  #25                 // Method getFieldValue:(Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+        23: areturn
+
+  public static java.lang.reflect.Field getField(java.lang.Class<?>, java.lang.String) throws java.lang.NoSuchFieldException;
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokevirtual #26                 // Method java/lang/Class.getDeclaredField:(Ljava/lang/String;)Ljava/lang/reflect/Field;
+         5: astore_2
+         6: aload_2
+         7: iconst_1
+         8: invokevirtual #27                 // Method java/lang/reflect/Field.setAccessible:(Z)V
+        11: aload_2
+        12: areturn
+
+  public static java.lang.reflect.Field getField(java.lang.Class<?>, java.lang.Class<?>) throws java.lang.NoSuchFieldException;
+    Code:
+         0: aload_0
+         1: invokevirtual #28                 // Method java/lang/Class.getDeclaredFields:()[Ljava/lang/reflect/Field;
+         4: astore_2
+         5: aload_2
+         6: arraylength
+         7: istore_3
+         8: iconst_0
+         9: istore        4
+        11: iload         4
+        13: iload_3
+        14: if_icmpge     50
+        17: aload_2
+        18: iload         4
+        20: aaload
+        21: astore        5
+        23: aload         5
+        25: invokevirtual #29                 // Method java/lang/reflect/Field.getType:()Ljava/lang/Class;
+        28: aload_1
+        29: invokestatic  #30                 // Method typeIsAssignableFrom:(Ljava/lang/reflect/Type;Ljava/lang/reflect/Type;)Z
+        32: ifeq          44
+        35: aload         5
+        37: iconst_1
+        38: invokevirtual #27                 // Method java/lang/reflect/Field.setAccessible:(Z)V
+        41: aload         5
+        43: areturn
+        44: iinc          4, 1
+        47: goto          11
+        50: new           #31                 // class java/lang/NoSuchFieldException
+        53: dup
+        54: new           #10                 // class java/lang/StringBuilder
+        57: dup
+        58: invokespecial #11                 // Method java/lang/StringBuilder."<init>":()V
+        61: ldc           #32                 // String Class
+        63: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        66: aload_0
+        67: invokevirtual #33                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        70: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        73: ldc           #34                 // String  does not define any field of type
+        75: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        78: aload_1
+        79: invokevirtual #33                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        82: invokevirtual #13                 // Method java/lang/StringBuilder.append:(Ljava/lang/String;)Ljava/lang/StringBuilder;
+        85: invokevirtual #15                 // Method java/lang/StringBuilder.toString:()Ljava/lang/String;
+        88: invokespecial #35                 // Method java/lang/NoSuchFieldException."<init>":(Ljava/lang/String;)V
+        91: athrow
+
+  public static void setFieldValue(java.lang.Object, java.lang.String, java.lang.Object) throws java.lang.NoSuchFieldException, java.lang.IllegalArgumentException, java.lang.IllegalAccessException;
+    Code:
+         0: aload_0
+         1: ifnonnull     14
+         4: new           #22                 // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #23                 // String Cannot infer object type : instance is null.
+        10: invokespecial #24                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: invokevirtual #7                  // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        18: aload_0
+        19: aload_1
+        20: aload_2
+        21: invokestatic  #36                 // Method setFieldValue:(Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/String;Ljava/lang/Object;)V
+        24: return
+
+  public static void setFieldValue(java.lang.Class<?>, java.lang.Object, java.lang.String, java.lang.Object) throws java.lang.NoSuchFieldException, java.lang.IllegalArgumentException, java.lang.IllegalAccessException;
+    Code:
+         0: aload_0
+         1: aload_2
+         2: invokestatic  #20                 // Method getField:(Ljava/lang/Class;Ljava/lang/String;)Ljava/lang/reflect/Field;
+         5: aload_1
+         6: aload_3
+         7: invokevirtual #37                 // Method java/lang/reflect/Field.set:(Ljava/lang/Object;Ljava/lang/Object;)V
+        10: return
+
+  public static java.lang.Object call(java.lang.Class<?>, java.lang.String, java.lang.Object...) throws java.lang.NoSuchMethodException, java.lang.IllegalAccessException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException;
+    Code:
+         0: aload_0
+         1: aconst_null
+         2: aload_1
+         3: aload_2
+         4: invokestatic  #38                 // Method call:(Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;
+         7: areturn
+
+  public static java.lang.Object call(java.lang.Object, java.lang.String, java.lang.Object...) throws java.lang.NoSuchMethodException, java.lang.IllegalAccessException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException;
+    Code:
+         0: aload_0
+         1: ifnonnull     14
+         4: new           #22                 // class java/lang/IllegalArgumentException
+         7: dup
+         8: ldc           #23                 // String Cannot infer object type : instance is null.
+        10: invokespecial #24                 // Method java/lang/IllegalArgumentException."<init>":(Ljava/lang/String;)V
+        13: athrow
+        14: aload_0
+        15: invokevirtual #7                  // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        18: aload_0
+        19: aload_1
+        20: aload_2
+        21: invokestatic  #38                 // Method call:(Ljava/lang/Class;Ljava/lang/Object;Ljava/lang/String;[Ljava/lang/Object;)Ljava/lang/Object;
+        24: areturn
+
+  public static java.lang.Object call(java.lang.Class<?>, java.lang.Object, java.lang.String, java.lang.Object...) throws java.lang.NoSuchMethodException, java.lang.IllegalAccessException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException;
+    Code:
+         0: aload_3
+         1: invokestatic  #39                 // Method getTypes:([Ljava/lang/Object;)[Ljava/lang/Class;
+         4: astore        5
+         6: aload_0
+         7: aload_2
+         8: aload         5
+        10: invokevirtual #40                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+        13: astore        4
+        15: goto          29
+        18: astore        6
+        20: aload_0
+        21: aload_2
+        22: aload         5
+        24: invokevirtual #42                 // Method java/lang/Class.getDeclaredMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+        27: astore        4
+        29: aload         4
+        31: iconst_1
+        32: invokevirtual #43                 // Method java/lang/reflect/Method.setAccessible:(Z)V
+        35: aload         4
+        37: aload_1
+        38: aload_3
+        39: invokevirtual #44                 // Method java/lang/reflect/Method.invoke:(Ljava/lang/Object;[Ljava/lang/Object;)Ljava/lang/Object;
+        42: areturn
+      Exception table:
+         from    to  target type
+             6    15    18   Class java/lang/NoSuchMethodException
+
+  public static boolean hasMethod(java.lang.Class<?>, java.lang.String, java.lang.Class<?>...);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: invokevirtual #40                 // Method java/lang/Class.getMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+         6: pop
+         7: goto          18
+        10: astore_3
+        11: aload_0
+        12: aload_1
+        13: aload_2
+        14: invokevirtual #42                 // Method java/lang/Class.getDeclaredMethod:(Ljava/lang/String;[Ljava/lang/Class;)Ljava/lang/reflect/Method;
+        17: pop
+        18: goto          24
+        21: astore_3
+        22: iconst_0
+        23: ireturn
+        24: iconst_1
+        25: ireturn
+      Exception table:
+         from    to  target type
+             0     7    10   Class java/lang/NoSuchMethodException
+             0    18    21   Class java/lang/NoSuchMethodException
+             0    18    21   Class java/lang/SecurityException
+
+  public static java.lang.reflect.Method findMethod(java.lang.Class<?>, java.lang.String, java.lang.reflect.Type...);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aconst_null
+         3: iconst_0
+         4: aload_2
+         5: invokestatic  #46                 // Method findMethod:(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/reflect/Type;I[Ljava/lang/reflect/Type;)Ljava/lang/reflect/Method;
+         8: areturn
+
+  public static java.lang.reflect.Method findMethod(java.lang.Class<?>, java.lang.String, int, java.lang.reflect.Type...);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aconst_null
+         3: iload_2
+         4: aload_3
+         5: invokestatic  #46                 // Method findMethod:(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/reflect/Type;I[Ljava/lang/reflect/Type;)Ljava/lang/reflect/Method;
+         8: areturn
+
+  public static java.lang.reflect.Method findMethod(java.lang.Class<?>, java.lang.String, java.lang.reflect.Type, int, java.lang.reflect.Type...);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: aload_2
+         3: iload_3
+         4: aload         4
+         6: invokestatic  #47                 // Method findAllMethods:(Ljava/lang/Class;Ljava/lang/String;Ljava/lang/reflect/Type;I[Ljava/lang/reflect/Type;)Ljava/util/List;
+         9: astore        5
+        11: aload         5
+        13: invokeinterface #48,  1           // InterfaceMethod java/util/List.isEmpty:()Z
+        18: ifeq          23
+        21: aconst_null
+        22: areturn
+        23: aload         5
+        25: iconst_0
+        26: invokeinterface #49,  2           // InterfaceMethod java/util/List.get:(I)Ljava/lang/Object;
+        31: checkcast     #50                 // class java/lang/reflect/Method
+        34: areturn
+
+  public static java.util.List<java.lang.reflect.Method> findAllMethods(java.lang.Class<?>, java.lang.String, java.lang.reflect.Type, int, java.lang.reflect.Type...);
+    Code:
+         0: new           #51                 // class java/util/ArrayList
+         3: dup
+         4: invokespecial #52                 // Method java/util/ArrayList."<init>":()V
+         7: astore        5
+         9: aload_0
+        10: invokevirtual #53                 // Method java/lang/Class.getMethods:()[Ljava/lang/reflect/Method;
+        13: astore        6
+        15: aload         6
+        17: arraylength
+        18: istore        7
+        20: iconst_0
+        21: istore        8
+        23: iload         8
+        25: iload         7
+        27: if_icmpge     168
+        30: aload         6
+        32: iload         8
+        34: aaload
+        35: astore        9
+        37: aload         9
+        39: invokevirtual #54                 // Method java/lang/reflect/Method.getName:()Ljava/lang/String;
+        42: aload_1
+        43: invokestatic  #55                 // Method nameMatches:(Ljava/lang/String;Ljava/lang/String;)Z
+        46: ifne          52
+        49: goto          162
+        52: aload         9
+        54: invokevirtual #56                 // Method java/lang/reflect/Method.getModifiers:()I
+        57: iload_3
+        58: invokestatic  #57                 // Method hasModifiers:(II)Z
+        61: ifne          67
+        64: goto          162
+        67: aload_2
+        68: ifnull        86
+        71: aload         9
+        73: invokevirtual #58                 // Method java/lang/reflect/Method.getGenericReturnType:()Ljava/lang/reflect/Type;
+        76: aload_2
+        77: invokestatic  #30                 // Method typeIsAssignableFrom:(Ljava/lang/reflect/Type;Ljava/lang/reflect/Type;)Z
+        80: ifne          86
+        83: goto          162
+        86: aload         9
+        88: invokevirtual #59                 // Method java/lang/reflect/Method.getGenericParameterTypes:()[Ljava/lang/reflect/Type;
+        91: astore        10
+        93: aload         4
+        95: arraylength
+        96: aload         10
+        98: arraylength
+        99: if_icmpeq     105
+       102: goto          162
+       105: iconst_0
+       106: istore        11
+       108: iload         11
+       110: aload         10
+       112: arraylength
+       113: if_icmpge     152
+       116: aload         4
+       118: iload         11
+       120: aaload
+       121: ifnonnull     127
+       124: goto          146
+       127: aload         4
+       129: iload         11
+       131: aaload
+       132: aload         10
+       134: iload         11
+       136: aaload
+       137: invokestatic  #30                 // Method typeIsAssignableFrom:(Ljava/lang/reflect/Type;Ljava/lang/reflect/Type;)Z
+       140: ifne          146
+       143: goto          162
+       146: iinc          11, 1
+       149: goto          108
+       152: aload         5
+       154: aload         9
+       156: invokeinterface #60,  2           // InterfaceMethod java/util/List.add:(Ljava/lang/Object;)Z
+       161: pop
+       162: iinc          8, 1
+       165: goto          23
+       168: aload         5
+       170: areturn
+
+  public static boolean typeIsAssignableFrom(java.lang.reflect.Type, java.lang.reflect.Type);
+    Code:
+         0: aload_0
+         1: instanceof    #64                 // class java/lang/reflect/ParameterizedType
+         4: ifeq          17
+         7: aload_0
+         8: checkcast     #64                 // class java/lang/reflect/ParameterizedType
+        11: invokeinterface #65,  1           // InterfaceMethod java/lang/reflect/ParameterizedType.getRawType:()Ljava/lang/reflect/Type;
+        16: astore_0
+        17: aload_1
+        18: instanceof    #64                 // class java/lang/reflect/ParameterizedType
+        21: ifeq          34
+        24: aload_1
+        25: checkcast     #64                 // class java/lang/reflect/ParameterizedType
+        28: invokeinterface #65,  1           // InterfaceMethod java/lang/reflect/ParameterizedType.getRawType:()Ljava/lang/reflect/Type;
+        33: astore_0
+        34: aload_0
+        35: instanceof    #66                 // class java/lang/Class
+        38: ifeq          60
+        41: aload_1
+        42: instanceof    #66                 // class java/lang/Class
+        45: ifeq          60
+        48: aload_1
+        49: checkcast     #66                 // class java/lang/Class
+        52: aload_0
+        53: checkcast     #66                 // class java/lang/Class
+        56: invokevirtual #67                 // Method java/lang/Class.isAssignableFrom:(Ljava/lang/Class;)Z
+        59: ireturn
+        60: aload_0
+        61: aload_1
+        62: invokevirtual #68                 // Method java/lang/Object.equals:(Ljava/lang/Object;)Z
+        65: ireturn
+
+  public static boolean hasModifiers(int, int);
+    Code:
+         0: bipush        32
+         2: istore_2
+         3: iload_2
+         4: iinc          2, -1
+         7: ifle          55
+        10: iconst_1
+        11: iload_2
+        12: ishl
+        13: istore_3
+        14: iload_1
+        15: iload_3
+        16: iand
+        17: ifeq          24
+        20: iconst_1
+        21: goto          25
+        24: iconst_0
+        25: istore        4
+        27: iload_0
+        28: iload_3
+        29: iand
+        30: ifeq          37
+        33: iconst_1
+        34: goto          38
+        37: iconst_0
+        38: istore        5
+        40: iload         4
+        42: ifeq          52
+        45: iload         5
+        47: ifne          52
+        50: iconst_0
+        51: ireturn
+        52: goto          3
+        55: iconst_1
+        56: ireturn
+
+  public static <T> T instantiate(java.lang.Class<T>, java.lang.Object...) throws java.lang.NoSuchMethodException, java.lang.InstantiationException, java.lang.IllegalAccessException, java.lang.IllegalArgumentException, java.lang.reflect.InvocationTargetException;
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #39                 // Method getTypes:([Ljava/lang/Object;)[Ljava/lang/Class;
+         5: invokevirtual #70                 // Method java/lang/Class.getDeclaredConstructor:([Ljava/lang/Class;)Ljava/lang/reflect/Constructor;
+         8: astore_2
+         9: aload_2
+        10: iconst_1
+        11: invokevirtual #71                 // Method java/lang/reflect/Constructor.setAccessible:(Z)V
+        14: aload_2
+        15: aload_1
+        16: invokevirtual #72                 // Method java/lang/reflect/Constructor.newInstance:([Ljava/lang/Object;)Ljava/lang/Object;
+        19: areturn
+
+  public static <T> java.lang.reflect.Constructor<?> findConstructor(java.lang.Class<T>, int);
+    Code:
+         0: aload_0
+         1: invokevirtual #73                 // Method java/lang/Class.getDeclaredConstructors:()[Ljava/lang/reflect/Constructor;
+         4: astore_2
+         5: aload_2
+         6: arraylength
+         7: istore_3
+         8: iconst_0
+         9: istore        4
+        11: iload         4
+        13: iload_3
+        14: if_icmpge     42
+        17: aload_2
+        18: iload         4
+        20: aaload
+        21: astore        5
+        23: aload         5
+        25: invokevirtual #74                 // Method java/lang/reflect/Constructor.getParameterTypes:()[Ljava/lang/Class;
+        28: arraylength
+        29: iload_1
+        30: if_icmpne     36
+        33: aload         5
+        35: areturn
+        36: iinc          4, 1
+        39: goto          11
+        42: aconst_null
+        43: areturn
+
+  public static java.lang.Class[] getTypes(java.lang.Object[]);
+    Code:
+         0: aload_0
+         1: arraylength
+         2: anewarray     #66                 // class java/lang/Class
+         5: astore_1
+         6: iconst_0
+         7: istore_2
+         8: iload_2
+         9: aload_0
+        10: arraylength
+        11: if_icmpge     29
+        14: aload_1
+        15: iload_2
+        16: aload_0
+        17: iload_2
+        18: aaload
+        19: invokevirtual #7                  // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        22: aastore
+        23: iinc          2, 1
+        26: goto          8
+        29: aload_1
+        30: areturn
+
+  public static java.lang.Class<?> getCallerClass();
+    Code:
+         0: invokestatic  #75                 // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+         3: invokevirtual #76                 // Method java/lang/Thread.getStackTrace:()[Ljava/lang/StackTraceElement;
+         6: astore_0
+         7: iconst_3
+         8: istore_1
+         9: iload_1
+        10: aload_0
+        11: arraylength
+        12: if_icmpge     40
+        15: aload_0
+        16: iload_1
+        17: aaload
+        18: invokevirtual #77                 // Method java/lang/StackTraceElement.getClassName:()Ljava/lang/String;
+        21: invokestatic  #17                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+        24: astore_2
+        25: goto          32
+        28: astore_3
+        29: goto          34
+        32: aload_2
+        33: areturn
+        34: iinc          1, 1
+        37: goto          9
+        40: aconst_null
+        41: areturn
+      Exception table:
+         from    to  target type
+            15    25    28   Class java/lang/ClassNotFoundException
+
+  public static <T> java.lang.Class<? extends T> getCallerClass(java.lang.Class<T>);
+    Code:
+         0: invokestatic  #75                 // Method java/lang/Thread.currentThread:()Ljava/lang/Thread;
+         3: invokevirtual #76                 // Method java/lang/Thread.getStackTrace:()[Ljava/lang/StackTraceElement;
+         6: astore_1
+         7: iconst_2
+         8: istore_2
+         9: iload_2
+        10: aload_1
+        11: arraylength
+        12: if_icmpge     68
+        15: aload_1
+        16: iload_2
+        17: aaload
+        18: invokevirtual #77                 // Method java/lang/StackTraceElement.getClassName:()Ljava/lang/String;
+        21: aload_0
+        22: invokevirtual #33                 // Method java/lang/Class.getName:()Ljava/lang/String;
+        25: invokevirtual #63                 // Method java/lang/String.equals:(Ljava/lang/Object;)Z
+        28: ifeq          34
+        31: goto          62
+        34: aload_1
+        35: iload_2
+        36: aaload
+        37: invokevirtual #77                 // Method java/lang/StackTraceElement.getClassName:()Ljava/lang/String;
+        40: invokestatic  #17                 // Method java/lang/Class.forName:(Ljava/lang/String;)Ljava/lang/Class;
+        43: astore_3
+        44: goto          52
+        47: astore        4
+        49: goto          62
+        52: aload_0
+        53: aload_3
+        54: invokevirtual #67                 // Method java/lang/Class.isAssignableFrom:(Ljava/lang/Class;)Z
+        57: ifeq          62
+        60: aload_3
+        61: areturn
+        62: iinc          2, 1
+        65: goto          9
+        68: aconst_null
+        69: areturn
+      Exception table:
+         from    to  target type
+            34    44    47   Class java/lang/ClassNotFoundException
+
+  public static <T> java.lang.Class<T> getDeclaringClass(T);
+    Code:
+         0: aload_0
+         1: ifnonnull     6
+         4: aconst_null
+         5: areturn
+         6: aload_0
+         7: instanceof    #79                 // class java/lang/Enum
+        10: ifeq          21
+        13: aload_0
+        14: checkcast     #79                 // class java/lang/Enum
+        17: invokevirtual #80                 // Method java/lang/Enum.getDeclaringClass:()Ljava/lang/Class;
+        20: areturn
+        21: aload_0
+        22: invokevirtual #7                  // Method java/lang/Object.getClass:()Ljava/lang/Class;
+        25: areturn
+
+  public static java.lang.Class<?> getClosestType(java.lang.Class<?>, java.util.Collection<java.lang.Class<?>>);
+    Code:
+         0: new           #51                 // class java/util/ArrayList
+         3: dup
+         4: aload_1
+         5: invokespecial #81                 // Method java/util/ArrayList."<init>":(Ljava/util/Collection;)V
+         8: astore_2
+         9: aload_1
+        10: invokeinterface #82,  1           // InterfaceMethod java/util/Collection.iterator:()Ljava/util/Iterator;
+        15: astore_3
+        16: aload_3
+        17: invokeinterface #83,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+        22: ifeq          55
+        25: aload_3
+        26: invokeinterface #84,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+        31: checkcast     #66                 // class java/lang/Class
+        34: astore        4
+        36: aload         4
+        38: aload_0
+        39: invokevirtual #67                 // Method java/lang/Class.isAssignableFrom:(Ljava/lang/Class;)Z
+        42: ifne          52
+        45: aload_2
+        46: aload         4
+        48: invokevirtual #85                 // Method java/util/ArrayList.remove:(Ljava/lang/Object;)Z
+        51: pop
+        52: goto          16
+        55: aload_2
+        56: invokevirtual #86                 // Method java/util/ArrayList.isEmpty:()Z
+        59: ifeq          64
+        62: aconst_null
+        63: areturn
+        64: aload_2
+        65: invokevirtual #87                 // Method java/util/ArrayList.size:()I
+        68: iconst_1
+        69: if_icmpne     81
+        72: aload_2
+        73: iconst_0
+        74: invokevirtual #88                 // Method java/util/ArrayList.get:(I)Ljava/lang/Object;
+        77: checkcast     #66                 // class java/lang/Class
+        80: areturn
+        81: aload_2
+        82: iconst_0
+        83: invokevirtual #88                 // Method java/util/ArrayList.get:(I)Ljava/lang/Object;
+        86: checkcast     #66                 // class java/lang/Class
+        89: astore_3
+        90: aload_2
+        91: invokevirtual #89                 // Method java/util/ArrayList.iterator:()Ljava/util/Iterator;
+        94: astore        4
+        96: aload         4
+        98: invokeinterface #83,  1           // InterfaceMethod java/util/Iterator.hasNext:()Z
+       103: ifeq          142
+       106: aload         4
+       108: invokeinterface #84,  1           // InterfaceMethod java/util/Iterator.next:()Ljava/lang/Object;
+       113: checkcast     #66                 // class java/lang/Class
+       116: astore        5
+       118: aload         5
+       120: aload_3
+       121: if_acmpne     127
+       124: goto          96
+       127: aload_3
+       128: aload         5
+       130: invokevirtual #67                 // Method java/lang/Class.isAssignableFrom:(Ljava/lang/Class;)Z
+       133: ifeq          139
+       136: aload         5
+       138: astore_3
+       139: goto          96
+       142: aload_3
+       143: areturn
+
+  public static java.lang.Class<?> getClosestType(java.lang.Class<?>, java.lang.Class<?>...);
+    Code:
+         0: aload_0
+         1: aload_1
+         2: invokestatic  #90                 // Method java/util/Arrays.asList:([Ljava/lang/Object;)Ljava/util/List;
+         5: invokestatic  #91                 // Method getClosestType:(Ljava/lang/Class;Ljava/util/Collection;)Ljava/lang/Class;
+         8: areturn
+}
