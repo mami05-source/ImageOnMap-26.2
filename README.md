@@ -16,7 +16,7 @@ Port of ImageOnMap for Minecraft/Paper (26.2).
 
 ## Credits
 
-Original project: zDevelopers
+Original project: Vlamar
 
 Ported to 26.2 by mami05-source.
 
