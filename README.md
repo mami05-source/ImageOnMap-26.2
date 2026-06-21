@@ -6,7 +6,7 @@ Port of ImageOnMap for Minecraft/Paper (26.2).
 
 * Import images into Minecraft maps
 * Compatible with modern Paper servers
-* Ported from the original ImageOnMap project
+* Ported from the original ImageOnMap project by zDevelopers
 
 ## Installation
 
@@ -16,7 +16,7 @@ Port of ImageOnMap for Minecraft/Paper (26.2).
 
 ## Credits
 
-Original project: Vlamar
+Original project:zDevelopers
 
 Ported to 26.2 by mami05-source.
 
